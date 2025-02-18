@@ -94,7 +94,7 @@
       devices = {
         "Phone" = { 
           id = "HVEN3M2-DUSOT3U-HI662VT-XLSIYA6-HYNE3A-KMUGNOT-JNIWTZV-LIVEUQH"; 
-          addresses = [ "tcp4://100.120.58.66:20000" ]
+          addresses = [ "tcp4://100.120.58.66:20000" ];
         };
       };
       folders = {
