@@ -81,6 +81,10 @@
     command-not-found.enable = true;
   };
     
+  #Tailscale
+  services.tailscale.enable = true;
+  networking.nameservers = [ "100.100.100.100" "1.1.1.1" "1.0.0.1"];
+  networking.search = [ "tail0ee7d.ts.net" ];
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
