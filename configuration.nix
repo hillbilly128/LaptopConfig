@@ -86,6 +86,27 @@
   networking.nameservers = [ "100.100.100.100" "1.1.1.1" "1.0.0.1"];
   networking.search = [ "tail0ee7d.ts.net" ];
 
+  #Syncthing
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    settings = {
+      devices = {
+        "Phone" = { 
+          id = "HVEN3M2-DUSOT3U-HI662VT-XLSIYA6-HYNE3A-KMUGNOT-JNIWTZV-LIVEUQH"; 
+          addresses = [ "tcp4://100.120.58.66:20000" ]
+        };
+      };
+      folders = {
+        "Documents" = {
+          path = "/home/myusername/Documents";
+          devices = [ "Phone" ];
+        };
+      };
+    };
+  };
+  systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
 
