@@ -44,6 +44,9 @@
     allowUnfree = true;
   };
 
+  #Firewall
+  networking.firewall.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb.layout = "gb";
   services.xserver.xkb.options = "eurosign:e,caps:escape";
