@@ -131,6 +131,7 @@
     wget
     gh
     git
+    heroic
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
