@@ -96,7 +96,7 @@
     settings = {
       devices = {
         "Phone" = { 
-          id = "HVEN3M2-DUSOT3U-HI662VT-XLSIYA6-HYNE3A-KMUGNOT-JNIWTZV-LIVEUQH"; 
+          id = "HVEN3M2-DUSOT3U-HI662VT-XLSIYA6-HYJNE3A-KMUGNOT-JNIWTZV-LIVEUQH"; 
           addresses = [ "tcp4://100.120.58.66:20000" ];
         };
       };
@@ -109,6 +109,22 @@
     };
   };
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+
+
+  #Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    package = pkgs.steam.override {
+      withPrimus = true;
+      extraPkgs = pkgs: [ bumblebee glxinfo ];
+      withJava = true;
+    };
+    java.enable = true;
+
+  }
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
