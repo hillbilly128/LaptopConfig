@@ -8,12 +8,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #./hp.nix
+      ./nvidia.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.hostName = "MuggleSpawn"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -43,7 +45,7 @@
   nixpkgs.config = {
     allowUnfree = true;
   };
-
+  
   #Firewall
   networking.firewall.enable = true;
 
@@ -51,8 +53,7 @@
   services.xserver.xkb.layout = "gb";
   services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  
 
   # Enable sound.
   # hardware.pulseaudio.enable = true;
@@ -68,7 +69,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.craig = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "lp" "scanner" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
       bitwarden-desktop
@@ -137,6 +138,7 @@
     gh
     git
     heroic
+#    hplip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -182,30 +184,7 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
   
-  hardware.graphics = {
-    enable = true;
-#    extraPackages = [
-#      intel-media-driver
-#    ];
-  };
-
-  services.xserver.videoDrivers = [
-    "nvidia"
-  ];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    prime = {
-      intelBusId = "PCI:1:00:0";
-      nvidiaBusId = "PCI:00:02:0";
-      sync.enable = true;
-    };
-  };
+  
    
   hardware.bluetooth.enable = true;
 }
