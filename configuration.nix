@@ -15,7 +15,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   networking.hostName = "MuggleSpawn"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -38,7 +38,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.enable = true;
   hardware.graphics.enable32Bit = true;
 

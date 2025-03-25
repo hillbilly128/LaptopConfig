@@ -3,9 +3,7 @@
 {
     hardware.graphics = {
     enable = true;
-#    extraPackages = [
-#      intel-media-driver
-#    ];
+    extraPackages = with pkgs; [ intel-ocl intel-vaapi-driver ];
   };
 
   services.xserver.videoDrivers = [
@@ -18,7 +16,7 @@
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
     prime = {
       intelBusId = "PCI:1:00:0";
       nvidiaBusId = "PCI:00:02:0";
