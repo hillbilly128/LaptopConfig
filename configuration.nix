@@ -10,16 +10,17 @@
       ./hardware-configuration.nix
       ./hp.nix
       ./nvidia.nix
+      ./firefox.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
   networking.hostName = "MuggleSpawn"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default. 
 
   # Set your time zone.
   services.automatic-timezoned.enable = true;
@@ -54,7 +55,7 @@
   services.xserver.xkb.layout = "gb";
   services.xserver.xkb.options = "eurosign:e,caps:escape";
 
-  
+  security.polkit.enable = true;
 
   # Enable sound.
   # hardware.pulseaudio.enable = true;
@@ -75,10 +76,14 @@
       tree
       bitwarden-desktop
       vscodium
-      (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
       libreoffice
       coreutils
       chromium
+      signal-desktop
+      whatsapp-for-linux
+      obsidian
+      tesseract
+      imagemagick
     ];
   };
 
@@ -88,7 +93,7 @@
     
   #Tailscale
   services.tailscale.enable = true;
-  networking.nameservers = [ "100.100.100.100" "1.1.1.1" "1.0.0.1"];
+  networking.nameservers = [ "100.100.100.100"];
   networking.search = [ "tail0ee7d.ts.net" ];
 
   #Syncthing
@@ -138,7 +143,17 @@
     wget
     gh
     git
-    heroic
+    lutris
+    wine-wayland
+    wineWowPackages.full
+    winetricks
+    pkgs.vulkan-tools
+    pkgs.dxvk
+    pkgs.vkd3d-proton
+    pkgs.libGL
+    cabextract
+    gnutls
+    pkgs.freetype
 #    hplip
   ];
 
