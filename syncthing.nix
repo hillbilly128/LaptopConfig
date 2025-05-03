@@ -76,4 +76,19 @@
         };
     };
     systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
+
+    programs.firefox ={
+        policies = {
+            ManagedBookmarks = [
+                {
+                    "Managed Bookmarks" = "Managed Bookmarks Folder";
+                }
+                {
+                    url = "http://127.0.0.1:8384";
+                    name = "Local Syncthing";
+                }                
+            ];
+        };
+    };
+
 }

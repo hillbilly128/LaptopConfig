@@ -13,6 +13,7 @@
       ./firefox.nix
       ./obsidian.nix
       ./syncthing.nix
+      ./immich.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
