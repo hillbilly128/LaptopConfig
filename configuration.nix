@@ -11,6 +11,8 @@
       ./hp.nix
       ./nvidia.nix
       ./firefox.nix
+      ./obsidian.nix
+      ./syncthing.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -71,7 +73,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.craig = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "lp" "scanner" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "lp" "scanner" "syncthing"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
       bitwarden-desktop
@@ -81,9 +83,6 @@
       chromium
       signal-desktop
       whatsapp-for-linux
-      obsidian
-      tesseract
-      imagemagick
     ];
   };
 
@@ -97,26 +96,7 @@
   networking.search = [ "tail0ee7d.ts.net" ];
 
   #Syncthing
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    settings = {
-      devices = {
-        "Phone" = { 
-          id = "HVEN3M2-DUSOT3U-HI662VT-XLSIYA6-HYJNE3A-KMUGNOT-JNIWTZV-LIVEUQH"; 
-          addresses = [ "tcp4://100.120.58.66:20000" ];
-        };
-      };
-      folders = {
-        "Documents" = {
-          path = "/home/myusername/Documents";
-          devices = [ "Phone" ];
-        };
-      };
-    };
-  };
-  systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
-
+  
   nix.gc = {
     automatic = true;
     dates = "weekly";

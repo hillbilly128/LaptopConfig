@@ -5,6 +5,7 @@
         ariang
         kdePackages.plasma-browser-integration
         aria2
+        vdhcoapp
     ];
 
     systemd.services.generateRandomFile = {
@@ -110,6 +111,10 @@
                 {
                     url = "${pkgs.ariang}/share/ariang/index.html";
                     name = "AriaNG";
+                }
+                {
+                    url = "http://127.0.0.1:8384";
+                    name = "Local Syncthing";
                 }
             ];
         };
