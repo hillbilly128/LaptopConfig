@@ -14,6 +14,9 @@
       ./obsidian.nix
       ./syncthing.nix
       ./immich.nix
+      ./users.nix
+      ./tailscale.nix
+      ./games.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -71,32 +74,13 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.craig = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "lp" "scanner" "syncthing"]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      tree
-      bitwarden-desktop
-      vscodium
-      libreoffice
-      coreutils
-      chromium
-      signal-desktop
-      whatsapp-for-linux
-    ];
-  };
+  
 
   programs = {
     command-not-found.enable = true;
   };
     
-  #Tailscale
-  services.tailscale.enable = true;
-  networking.nameservers = [ "100.100.100.100"];
-  networking.search = [ "tail0ee7d.ts.net" ];
-
-  #Syncthing
+  
   
   nix.gc = {
     automatic = true;
@@ -105,14 +89,7 @@
   };
 
   #Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-    gamescopeSession.enable = true;
-  };
-  programs.gamemode.enable = true;
+  
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = false;
@@ -124,18 +101,6 @@
     wget
     gh
     git
-    lutris
-    wine-wayland
-    wineWowPackages.full
-    winetricks
-    pkgs.vulkan-tools
-    pkgs.dxvk
-    pkgs.vkd3d-proton
-    pkgs.libGL
-    cabextract
-    gnutls
-    pkgs.freetype
-#    hplip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
