@@ -6,6 +6,7 @@
         users = {
             craig = {
                 isNormalUser = true;
+                shell = pkgs.fish;
                 extraGroups = [ "wheel" "networkmanager" "lp" "scanner" "syncthing"]; # Enable ‘sudo’ for the user.
                 packages = with pkgs; [
                     tree
@@ -20,5 +21,6 @@
             };
         };
         
-  };
+    };
+    programs.fish.enable = true;
 }

@@ -45,7 +45,7 @@
 #  };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  #services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.enable = true;
   hardware.graphics.enable32Bit = true;
@@ -100,8 +100,13 @@
     vim-full # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     gh
-    git
   ];
+
+  programs = {
+    git = {
+      enable = true;
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
