@@ -9,7 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./hp.nix
-      ./nvidia.nix
+      ./clevo.nix
+      #./nvidia.nix
       ./firefox.nix
       ./obsidian.nix
       ./syncthing.nix
@@ -44,11 +45,9 @@
 #    useXkbConfig = true; # use xkb.options in tty.
 #  };
 
-  # Enable the X11 windowing system.
   #services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.enable = true;
-  hardware.graphics.enable32Bit = true;
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -100,6 +99,9 @@
     vim-full # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     gh
+    virtualgl
+    fwupd
+    dmidecode
   ];
 
   programs = {
