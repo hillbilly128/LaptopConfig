@@ -17,6 +17,8 @@
                     chromium
                     signal-desktop
                     whatsapp-for-linux
+                    vlc
+                    
                 ];
             };
         };
