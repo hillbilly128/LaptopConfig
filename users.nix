@@ -18,7 +18,12 @@
                     signal-desktop
                     whatsapp-for-linux
                     vlc
-                    
+                    kdePackages.kdepim-addons
+                    kdePackages.kmail
+                    kdePackages.kontact
+                    kdePackages.korganizer
+                    kdePackages.kmailtransport
+                    kdePackages.kmail-account-wizard
                 ];
             };
         };
