@@ -19,6 +19,9 @@
       ./tailscale.nix
       ./games.nix
     ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-33.4.11"
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -84,7 +87,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 15d";
+    options = "--delete-older-than 7d";
   };
 
   #Steam

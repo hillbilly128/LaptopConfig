@@ -8,11 +8,16 @@
             options = {
                 urAccepted = -1;
                 localAnnouceEnabled = true;
+
             };
             devices = {
                 "Phone" = { 
                 id = "HVEN3M2-DUSOT3U-HI662VT-XLSIYA6-HYJNE3A-KMUGNOT-JNIWTZV-LIVEUQH"; 
                 addresses = [ "tcp4://100.120.58.66:20000" ];
+                };
+                "Travel Router" = { 
+                id = "MP2XSVL-UDKUQ4U-CAL6QTW-OYINJRV-OEZJYBV-YZAYPKG-ZPQ2EID-6UD75A4"; 
+                addresses = [ "tcp4://100.94.149.9:22000" ];
                 };
             };
             folders = {
@@ -67,7 +72,7 @@
                 };
                 "Videos" = {
                     path = "/data/videos";
-                    devices = [ "Phone" ];
+                    devices = [ "Phone" "Travel Router" ];
                     id = "ssjag-ryfdf";
                     type = "sendreceive";
                 };
